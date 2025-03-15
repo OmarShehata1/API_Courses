@@ -2,5 +2,9 @@
 # dependencies
 /node_modules
 
+<<<<<<< HEAD
 #gitingore
+=======
+
+>>>>>>> 892d13daec25ef3980577334770b62a08ca54539
 /.gitignore
