@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const courseSchema = new mongoose.Schema(
     {
-        name: {
+        title: {
             type: String,
             required: true,
             minlength: 2,
-            maxlength: 255,
         },
         price: {
             type: Number,
