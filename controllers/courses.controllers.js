@@ -7,7 +7,7 @@ const AppError = require("../utils/appError");
 
 
 
-const getAllCourses = async (req, res) => {
+const getAllCourses =asyncWrapper( async (req, res) => {
   const query = req.query;
   
   const limit = query.limit || 20;
@@ -15,7 +15,7 @@ const getAllCourses = async (req, res) => {
   const skip = (page - 1) * limit;
   const courses = await Course.find({}, { __v: false }).limit(limit).skip(skip);
   res.json({ status: httpStatusText.SUCCESS, data: { courses: courses } });
-};
+});
 
 
 const getCourse =asyncWrapper(

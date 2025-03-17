@@ -16,7 +16,7 @@ mongoose.connect(url).then(() => {
 
 const coursesRouter = require("./routes/courses.route");
 app.use("/api/courses", coursesRouter); // api/courses is the base url
-
+app.use("/api/users", require("./routes/users.route")); // api/users is the base url
 
 // global midlware for not found router
 app.all("*", (req, res) => {
@@ -30,7 +30,7 @@ app.all("*", (req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.statusCode ||500 ).json({
-    status: err.statusText || statusText.ERROR,
+    status: err.statusText || httpStatusText.ERROR,
     message: err.message,
     code : err.statusCode || 500,
     data: null,
