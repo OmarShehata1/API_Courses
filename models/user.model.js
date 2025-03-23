@@ -28,6 +28,9 @@ const userSchema = mongoose.Schema ({
         minlength: 5,
         maxlength: 255,
     },
+    token : {
+        type: String
+    }
 });
 
 

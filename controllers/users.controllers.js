@@ -2,9 +2,12 @@ const User = require("../models/user.model");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const httpStatusText = require("../utils/httpStatusText");
 const AppError = require("../utils/appError");
+const generateJWT = require("../utils/generateJWT");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const getAllUsers = asyncWrapper(async (req, res) => {
+  console.log(req.headers);
   const query = req.query;
 
   const limit = query.limit || 20;
@@ -39,6 +42,10 @@ const register = asyncWrapper(async (req, res, next) => {
     password: hashedPassword,
   });
 
+  // generate token
+    const token =await generateJWT({ email: newUser.email ,id: newUser._id });
+    newUser.token = token;
+
   await newUser.save();
 
   res.status(201).json({
@@ -51,25 +58,31 @@ const login = asyncWrapper(async (req, res, next) => {
   const { email, password } = req.body;
   if(!email && !password){
       const error = AppError.create("Email and password are required", 400, httpStatusText.FAIL);
-      return next(error);
+      return next(error);          
     }
+
     const user = await User.findOne({ email });
     if (!user) {
         const error = AppError.create("User not found", 404, httpStatusText.FAIL);
         return next(error);
       }
+
+
       // Password verification
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
-      res.json({
+        // generate token
+        const token =await generateJWT({ email: user.email ,id: user._id });
+        
+      
+        res.json({
         status: httpStatusText.SUCCESS,
-        data: { message: "Login successful" },
+        data: { token },
       });
     } else {
       const error = AppError.create("Invalid credentials", 400, httpStatusText.FAIL);
       return next(error);
-    }
-    
+    }    
 });
 
 module.exports = {
