@@ -3,12 +3,15 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const Path  = require("path");
+
 
 app.use(cors());
 app.use(express.json());
 
 const httpStatusText = require("./utils/httpStatusText");
 
+app.use("/uploads", express.static(Path.join(__dirname, "uploads")));
 const url = process.env.MONGO_URL;
 mongoose.connect(url).then(() => {
   console.log("Connected to MongoDB");
