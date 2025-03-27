@@ -22,6 +22,7 @@ A **RESTful API** for managing courses, built using **Node.js** and **MongoDB**.
  Test endpoints using Postman or browser.
 
 ## 🔹 **API Endpoints**
+# Courses Endpoint
 
 | Method | Endpoint       | Description      |
 | ------ | -------------- | ---------------- |
@@ -30,4 +31,15 @@ A **RESTful API** for managing courses, built using **Node.js** and **MongoDB**.
 | POST   | `/courses`     | Add new course   |
 | PATCH  | `/courses/:id` | Update course    |
 | DELETE | `/courses/:id` | Delete course    |
+
+
+# User Endpoint
+
+| Method | Endpoint        | Description         |
+| ------ | ----------------| --------------------|
+| GET    | `/users`        | Get all users       |
+| POST   | `//users/login` | Login user          |
+| POST  | `/users/register`| Register a new user |
+
+
 
