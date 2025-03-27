@@ -22,7 +22,7 @@ A **RESTful API** for managing courses, built using **Node.js** and **MongoDB**.
  Test endpoints using Postman or browser.
 
 ## 🔹 **API Endpoints**
-# Courses Endpoint
+### Courses Endpoint
 
 | Method | Endpoint       | Description      |
 | ------ | -------------- | ---------------- |
@@ -33,7 +33,7 @@ A **RESTful API** for managing courses, built using **Node.js** and **MongoDB**.
 | DELETE | `/courses/:id` | Delete course    |
 
 
-# User Endpoint
+### User Endpoint
 
 | Method | Endpoint        | Description         |
 | ------ | ----------------| --------------------|
